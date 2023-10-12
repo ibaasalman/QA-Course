@@ -5,8 +5,8 @@ export default class userInit{
     static initUser(): userAPIPayload {
         return {
             user: {
-                username: `Ayman${genericFunctions.genericRandomNumber()}`,
-                email:`Ayman${genericFunctions.genericRandomNumber()}@gmail.com`,
+                username: `ibaa${genericFunctions.genericRandomNumber()}`,
+                email:`ibaa${genericFunctions.genericRandomNumber()}@gmail.com`,
                 password: '123456'
             }
         }
