@@ -4,4 +4,6 @@ dist/
 .DS_Store
 coverage/
 .vscode/
-allure_results
+allure-results
+cypress/results
+cypress/screenshots

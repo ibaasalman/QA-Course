@@ -2,9 +2,10 @@ const { defineConfig } = require("cypress");
 const allureWriter = require('@shelex/cypress-allure-plugin/writer');
 
 module.exports = defineConfig({
+  projectId: "afqxok",
   e2e: {
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
-    baseUrl: "https://api.realworld.io",
+    baseUrl: "https://opensource-demo.orangehrmlive.com",
     setupNodeEvents(on, config) {
       allureWriter(on, config);
       require('@cypress/grep/src/plugin')(config);
