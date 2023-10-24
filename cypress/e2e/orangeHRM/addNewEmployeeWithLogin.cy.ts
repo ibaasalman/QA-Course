@@ -15,17 +15,7 @@ describe('add new Employee with login', () => {
         cy.fixture("employeeInfo").as("empInfo");
     })
 
-    // afterEach(() => { // I have a problem here
-    //     cy.get('@empInfo').then((empData: any) => {
-    //         cy.visit("web/index.php/auth/login");
-
-    //         // login
-    //         myLoginPage.login("Admin", "admin123");
-    //         myAddEmployeePage.deleteEmployee(empData.id)
-    //     })
-    // })
-
-
+    
     it('add new Employee with login via API', () => {
         cy.get('@empInfo').then((empData: any) => {
             myAddEmployeePage.addWithLoginViaAPI(empData).then((res: any) => {

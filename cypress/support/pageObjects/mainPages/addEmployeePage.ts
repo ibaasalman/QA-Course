@@ -57,7 +57,7 @@ class AddEmployeePage{
                     password: empData.password,
                     status: true,
                     userRoleId: 2,
-                    empNumber: empNo
+                    empNumber: empNo,
                 }
             }).its('body');
         })
