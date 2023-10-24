@@ -14,7 +14,7 @@ describe("Sign in", () => {
     });
 
     it("Forget password", () => {
-        myLoginPage.forgetPassword("Ayman");
+        myLoginPage.forgetPassword("ibaa");
     });
 
     it("Verify Login Response", () => {
