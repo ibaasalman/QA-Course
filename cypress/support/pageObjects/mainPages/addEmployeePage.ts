@@ -1,34 +1,40 @@
-import GenericFunctions from "cypress/e2e/conduit/support/GenericFunctions";
+import GenericFunctions from "../../../e2e/conduit/support/genericFunctions";
 
 class AddEmployeePage{
     elements = {
         saveBTN: () => cy.get('button').contains('Save'),
         CancelBTN: () => cy.get('button').contains('Cancel'),
-        firstName: () => cy.get('[placeholder = "First Name"]'),
-        middleName: () => cy.get('[placeholder = "Middle Name"]'),
-        lastName: () => cy.get('[placeholder = "Last Name"]'),
-        employeeId: () => cy.get(':nth-child(1) > .oxd-grid-2 > .oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-input'),
-        loginDetailsSwitch: () => cy.get('.oxd-switch-input'),
-        userName: () => cy.get(':nth-child(4) > .oxd-grid-2 > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input'),
+@@ -11,18 +13,76 @@ class addEmployeePage{
         password: () => cy.get('.user-password-cell > .oxd-input-group > :nth-child(2) > .oxd-input'),
         confirmPassword: () => cy.get('.oxd-grid-2 > :nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input')
     }
 
     urls = {
-        employees: 'https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/pim/employees',
-        users: 'https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/admin/users'
+        employees: '/web/index.php/api/v2/pim/employees',
+        users: '/web/index.php/api/v2/admin/users'
     }
 
 
-    addWithLogin = (firstName: string, middleName: string, lastName: string, userName: string, password: string) => {
-        this.elements.firstName().type(firstName);
-        this.elements.middleName().type(middleName);
-        this.elements.lastName().type(lastName);
-        this.elements.loginDetailsSwitch().click();
-        this.elements.userName().type(userName);
-        this.elements.password().type(password);
-        this.elements.confirmPassword().type(password);
-        this.elements.saveBTN().click();
+    addWithLogin = (firstName: string, middleName: string, lastName: string, userName: string, password: string) => {        
+        this.actions.enterFirstName(firstName);
+        this.actions.enterMiddleName(middleName);
+        this.actions.enterLastName(lastName);
+        this.actions.addLoginSwitch();
+        this.actions.enterUsername(userName);
+        this.actions.enterPassword(password);
+        this.actions.enterConfirmPassword(password);
+        this.actions.clickSaveBTN();
+    }
+
+    actions = {
+        enterFirstName: (firstName: string) => this.elements.firstName().type(firstName),
+        enterMiddleName: (middleName: string) => this.elements.middleName().type(middleName),
+        enterLastName: (lastName: string) => this.elements.lastName().type(lastName),
+        addLoginSwitch: () => this.elements.loginDetailsSwitch().click(),
+        enterUsername: (userName: string) => this.elements.userName().type(userName),
+        enterPassword: (password: string) => this.elements.password().type(password),
+        enterConfirmPassword: (password: string) => this.elements.confirmPassword().type(password),
+        clickSaveBTN: () => this.elements.saveBTN().click()
     }
 
     addViaAPI = (empData:any) => { // payload interface have to be added
@@ -63,6 +69,7 @@ class AddEmployeePage{
         })
     }
 
+   
     deleteEmployee = (id:number) => {
         cy.api({
             method: 'DELETE',
@@ -73,5 +80,3 @@ class AddEmployeePage{
         })
     }
 }
-
-export default AddEmployeePage
